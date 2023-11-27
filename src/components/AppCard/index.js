@@ -1,18 +1,19 @@
 import React from 'react';
 import {Text, Image, View, ImageBackground, StyleSheet} from 'react-native';
-const Card = () => {
+
+const Card = props => {
+  const {name, image, bio} = props.user;
+
   return (
     <View style={styles.card}>
       <ImageBackground
         source={{
-          uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png',
+          uri: image,
         }}
         style={styles.image}>
         <View style={styles.cardInner}>
-          <Text style={styles.name}>Elon Musk</Text>
-          <Text style={styles.bio}>
-            A dude with a rocket is looking for a gal with fuel
-          </Text>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.bio}>{bio}</Text>
         </View>
       </ImageBackground>
     </View>
@@ -21,17 +22,17 @@ const Card = () => {
 const styles = StyleSheet.create({
   card: {
     width: '95%',
-    height: '70%',
+    height: '77%',
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 1,
     },
-    shadowOpacity: 0.39,
-    shadowRadius: 8.3,
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
 
-    elevation: 13,
+    elevation: 3,
   },
   image: {
     width: '100%',
