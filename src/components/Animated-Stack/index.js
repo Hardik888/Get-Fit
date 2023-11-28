@@ -144,11 +144,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   gestureHandlerRoot: {
+    position: 'relative',
     flex: 1,
+    overflow: 'hidden',
   },
   animatedCard: {
-    width: '110%',
-    height: '100%',
+    width: '105%',
+    height: '90%',
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
