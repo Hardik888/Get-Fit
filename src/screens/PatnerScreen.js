@@ -5,7 +5,7 @@ const PatnerScreen = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
-        <Text style={{fontWeight: 'bold', fontSize: 25, color: '#008080'}}>
+        <Text style={{fontWeight: 'bold', fontSize: 25, color: '#3AB4CC'}}>
           New Patners
         </Text>
         <View style={styles.users}>

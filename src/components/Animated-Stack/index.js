@@ -163,11 +163,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   like: {
-    width: 100,
-    height: 100,
+    width: 30,
+    height: 40,
     position: 'absolute',
+    opacity: 50,
     top: 150,
     zIndex: 1,
+    borderRadius: 50,
   },
 });
 
