@@ -20,7 +20,7 @@ const ROTATION = 60;
 const SWIPE_VELOCITY = 800;
 
 const AnimatedStack = props => {
-  const {data, renderItem} = props;
+  const {data, renderItem, onSwipeRight, onSwipeLeft} = props;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(currentIndex + 1);
@@ -92,10 +92,10 @@ const AnimatedStack = props => {
       translateX.value = withSpring(
         hiddenTranslateX * Math.sign(event.velocityX),
         {},
-        () => {
-          runOnJS(setCurrentIndex)(currentIndex + 1);
-        },
+        () => runOnJS(setCurrentIndex)(currentIndex + 1),
       );
+      const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
+      onSwipe && runOnJS(onSwipe)(currentProfile);
     },
   });
 
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   animatedCard: {
-    width: '120%',
-    height: '110%',
+    width: '110%',
+    height: '100%',
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',

@@ -22,16 +22,17 @@ const Card = props => {
 };
 const styles = StyleSheet.create({
   card: {
-    width: '80%',
-    height: '70%',
+    width: '90%',
+    height: '60%',
     borderRadius: 10,
+    backgroundColor: '#fefefe',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 5,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
 
     elevation: 5,
   },
