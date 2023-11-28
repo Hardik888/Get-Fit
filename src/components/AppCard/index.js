@@ -10,7 +10,8 @@ const Card = props => {
         source={{
           uri: image,
         }}
-        style={styles.image}>
+        style={styles.image}
+        resizeMode="cover">
         <View style={styles.cardInner}>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.bio}>{bio}</Text>
@@ -21,8 +22,8 @@ const Card = props => {
 };
 const styles = StyleSheet.create({
   card: {
-    width: '95%',
-    height: '77%',
+    width: '80%',
+    height: '70%',
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
 
-    elevation: 3,
+    elevation: 5,
   },
   image: {
     width: '100%',
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     justifyContent: 'flex-end',
+    elevation: 6,
   },
   cardInner: {
     padding: 10,

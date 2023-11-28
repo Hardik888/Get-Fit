@@ -15,17 +15,17 @@ export default [
   },
   {
     id: '3',
-    name: 'Zuck',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg',
-    bio: 'Work Hard than before',
-  },
-  {
-    id: '4',
-    name: 'Jeffrey Bezos',
+    name: 'Jeff',
     image:
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
     bio: 'CEO, entrepreneur born in 1964, Jeffrey, Jeffrey Bezos',
+  },
+  {
+    id: '4',
+    name: 'Zuck',
+    image:
+      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg',
+    bio: 'Work harder every time',
   },
   {
     id: '5',
