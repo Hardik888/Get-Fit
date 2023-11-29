@@ -1,12 +1,23 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, SafeAreaView, Pressable} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Pressable, Button} from 'react-native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './src/screens/HomeScreen';
 import PatnerScreen from './src/screens/PatnerScreen';
-import {clamp} from 'react-native-reanimated';
+import {Amplify} from 'aws-amplify';
+import {
+  withAuthenticator,
+  useAuthenticator,
+} from '@aws-amplify/ui-react-native';
+import awsconfig from './src/aws-exports';
+Amplify.configure(awsconfig);
+
+function SignOutButton() {
+  const {signOut} = useAuthenticator();
+  return <Button onPress={signOut} title="Sign Out" />;
+}
 
 const App = () => {
   const color = '#b5b5b5';
@@ -34,6 +45,7 @@ const App = () => {
           </Pressable>
           <FontAwesome name="user" size={30} color={color} />
         </View>
+
         {activeScreen === 'HOME' && <HomeScreen />}
         {activeScreen === 'CHAT' && <PatnerScreen />}
       </View>
@@ -58,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default withAuthenticator(App);

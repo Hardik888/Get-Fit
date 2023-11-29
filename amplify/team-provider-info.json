@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fitnessapp-staging-204620-authRole",
+      "UnauthRoleArn": "arn:aws:iam::941863037293:role/amplify-fitnessapp-staging-204620-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::941863037293:role/amplify-fitnessapp-staging-204620-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-fitnessapp-staging-204620-deployment",
+      "UnauthRoleName": "amplify-fitnessapp-staging-204620-unauthRole",
+      "StackName": "amplify-fitnessapp-staging-204620",
+      "StackId": "arn:aws:cloudformation:ap-south-1:941863037293:stack/amplify-fitnessapp-staging-204620/2fb03bf0-8e2f-11ee-85c3-02c52b252a1a",
+      "AmplifyAppId": "d18umssj25a62b"
+    }
+  }
+}
