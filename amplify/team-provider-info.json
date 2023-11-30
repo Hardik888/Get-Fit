@@ -10,6 +10,14 @@
       "StackName": "amplify-fitnessapp-staging-204620",
       "StackId": "arn:aws:cloudformation:ap-south-1:941863037293:stack/amplify-fitnessapp-staging-204620/2fb03bf0-8e2f-11ee-85c3-02c52b252a1a",
       "AmplifyAppId": "d18umssj25a62b"
+    },
+    "categories": {
+      "auth": {
+        "FitnessApp": {}
+      },
+      "api": {
+        "FitnessApp": {}
+      }
     }
   }
 }

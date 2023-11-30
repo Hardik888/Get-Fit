@@ -57,7 +57,7 @@ const AnimatedStack = props => {
         scale: interpolate(
           translateX.value,
           [-hiddenTranslateX, 0, hiddenTranslateX],
-          [1.1, 0.8, 1.1],
+          [1, 0.5, 1],
         ),
       },
     ],
@@ -106,13 +106,15 @@ const AnimatedStack = props => {
 
   return (
     <View style={styles.root}>
-      <GestureHandlerRootView style={styles.gestureHandlerRoot}>
+      <GestureHandlerRootView>
         {nextProfile && (
-          <View style={styles.nextCardContainer}>
-            <Animated.View style={[styles.animatedCard, nextCardStyle]}>
-              {renderItem({item: nextProfile})}
-            </Animated.View>
-          </View>
+          <PanGestureHandler onGestureEvent={gestureHandler}>
+            <View style={styles.nextCardContainer}>
+              <Animated.View style={[styles.animatedCard, nextCardStyle]}>
+                {renderItem({item: nextProfile})}
+              </Animated.View>
+            </View>
+          </PanGestureHandler>
         )}
 
         {currentProfile && (
@@ -163,13 +165,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   like: {
-    width: 30,
+    width: 50,
     height: 40,
     position: 'absolute',
-    opacity: 50,
-    top: 150,
+    opacity: 40,
+    top: 80,
     zIndex: 1,
-    borderRadius: 50,
+    borderRadius: 100,
   },
 });
 

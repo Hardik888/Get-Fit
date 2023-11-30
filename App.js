@@ -6,18 +6,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './src/screens/HomeScreen';
 import PatnerScreen from './src/screens/PatnerScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 import {Amplify} from 'aws-amplify';
-import {
-  withAuthenticator,
-  useAuthenticator,
-} from '@aws-amplify/ui-react-native';
+import {withAuthenticator} from '@aws-amplify/ui-react-native';
 import awsconfig from './src/aws-exports';
-Amplify.configure(awsconfig);
 
-function SignOutButton() {
-  const {signOut} = useAuthenticator();
-  return <Button onPress={signOut} title="Sign Out" />;
-}
+Amplify.configure(awsconfig);
 
 const App = () => {
   const color = '#b5b5b5';
@@ -43,11 +37,18 @@ const App = () => {
               color={activeScreen === 'CHAT' ? activeColor : color}
             />
           </Pressable>
-          <FontAwesome name="user" size={30} color={color} />
+          <Pressable onPress={() => setActiveScreen('PROFILE')}>
+            <FontAwesome
+              name="user"
+              size={30}
+              color={activeScreen === 'PROFILE' ? activeColor : color}
+            />
+          </Pressable>
         </View>
 
         {activeScreen === 'HOME' && <HomeScreen />}
         {activeScreen === 'CHAT' && <PatnerScreen />}
+        {activeScreen === 'PROFILE' && <ProfileScreen />}
       </View>
     </SafeAreaView>
   );
