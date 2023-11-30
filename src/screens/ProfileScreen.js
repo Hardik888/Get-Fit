@@ -51,6 +51,7 @@ const ProfileScreen = () => {
 
     fetchData();
   }, []);
+
   const [new_sub, Setnew_sub] = useState(' ');
   const [user, setUser] = useState(null);
   const [name, setName] = useState('');
@@ -70,7 +71,6 @@ const ProfileScreen = () => {
       throw error;
     }
   }
-  const dbUsers = async () => await DataStore.query(User);
 
   const isValid = () => {
     return name && bio && gender && lookingFor;
@@ -92,7 +92,7 @@ const ProfileScreen = () => {
       await DataStore.save(updatedUser);
     } else {
       const newsub = await handleFetchUserAttributes();
-      console.log(newsub);
+
       Setnew_sub(newsub);
       const newUser = new User({
         sub: newsub,

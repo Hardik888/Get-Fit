@@ -12,6 +12,7 @@
   "dependencies": {
     "@aws-amplify/auth": "^6.0.5",
     "@aws-amplify/core": "^6.0.5",
+    "@aws-amplify/datastore": "^5.0.5",
     "@aws-amplify/react-native": "^1.0.5",
     "@aws-amplify/rtn-web-browser": "^1.0.5",
     "@aws-amplify/ui-react-native": "^2.0.3",

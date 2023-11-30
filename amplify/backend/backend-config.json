@@ -11,7 +11,6 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2023-12-30T13:19:03.600Z",
               "apiKeyExpirationDays": 30,
               "description": "api key description"
             },
@@ -21,6 +20,20 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
+    },
+    "apib62c81c2": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "fitnessappf1fa78f7"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -47,6 +60,38 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "fitnessappf1fa78f7": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_fitnessappf1fa78f7_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fitnessappf1fa78f7"
+        }
+      ]
+    },
+    "AMPLIFY_function_fitnessappf1fa78f7_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fitnessappf1fa78f7"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "s3fitnessappstorage63b08baf": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

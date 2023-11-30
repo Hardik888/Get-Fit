@@ -15,8 +15,14 @@
       "auth": {
         "FitnessApp": {}
       },
-      "api": {
-        "FitnessApp": {}
+      "function": {
+        "fitnessappf1fa78f7": {
+          "deploymentBucketName": "amplify-fitnessapp-staging-204620-deployment",
+          "s3Key": "amplify-builds/fitnessappf1fa78f7-4763366a59634f446d6d-build.zip"
+        }
+      },
+      "storage": {
+        "s3fitnessappstorage63b08baf": {}
       }
     }
   }

@@ -22,8 +22,8 @@ const Card = props => {
 };
 const styles = StyleSheet.create({
   card: {
-    width: '90%',
-    height: '110%',
+    width: '60%',
+    height: '100%',
     borderRadius: 10,
     marginTop: 70,
     backgroundColor: '#fefefe',

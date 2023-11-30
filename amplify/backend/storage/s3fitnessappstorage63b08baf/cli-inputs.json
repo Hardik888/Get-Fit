@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3fitnessappstorage63b08baf",
+  "bucketName": "fitnessapp-storage-63b08baf",
+  "policyUUID": "f707cc56",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ]
+}
