@@ -14,7 +14,6 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const {sub} = await handleFetchUserAttributes();
       const dbUsers = await DataStore.query(User);
 
       if (dbUsers.length <= 0) {
@@ -22,8 +21,6 @@ const HomeScreen = () => {
       }
 
       setMe(dbUsers[0]);
-
-      console.log(err);
     };
 
     fetchData();
@@ -50,6 +47,7 @@ const HomeScreen = () => {
       new Match({
         User1ID: me.id,
         User2ID: currentUser.id,
+        isMatch: false,
       }),
     );
     console.warn('swipe right', currentUser.name);
