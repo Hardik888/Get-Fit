@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import {
@@ -10,10 +11,14 @@ import {
   Pressable,
 } from 'react-native';
 import {User} from '../models/';
+import 'aws-amplify/auth';
+import {Auth} from '@aws-amplify/auth';
+import {fetchUserAttributes} from 'aws-amplify/auth';
 
+import {getCurrentUser} from 'aws-amplify/auth';
 import {DataStore} from '@aws-amplify/datastore';
 import {useAuthenticator} from '@aws-amplify/ui-react-native';
-import {getCurrentUser} from 'aws-amplify/auth';
+
 function SignOutButton() {
   const {signOut} = useAuthenticator();
   return <Button style={styles.button} onPress={signOut} title="Sign Out" />;
@@ -24,6 +29,44 @@ const ProfileScreen = () => {
   const [bio, setBio] = useState('');
   const [gender, setGender] = useState('');
   const [lookingFor, setLookingFor] = useState('');
+
+  /* useEffect(() => {
+    const handleFetchUserAttribute = async () => {
+      try {
+        const user = await fetchUserAttributes();
+        console.warn(user);
+        const dbUsers = await DataStore.query(
+          User,
+          u => u.sub === user.attributes.sub,
+        );
+
+        if (dbUsers.length < 0) {
+          return;
+        }
+        const dbUser = dbUsers[0];
+
+        setName(dbUser.name);
+        setBio(dbUser.bio);
+        setGender(dbUser.gender);
+        setLookingFor(dbUser.lookingFor);
+      } catch (err) {
+        console.log(err);
+      }
+      getCurrentUser();
+    };
+  }, []); */
+  async function handleFetchUserAttributes() {
+    try {
+      const {sub} = await fetchUserAttributes(); // Destructure the sub property
+      console.log(sub); // Log the sub value
+      return sub; // Return only the sub value
+    } catch (error) {
+      console.log(error);
+      // Handle the error if needed, you might want to return a default value or rethrow the error
+      throw error;
+    }
+  }
+
   const isValid = () => {
     return name && bio && gender && lookingFor;
   };
@@ -32,16 +75,15 @@ const ProfileScreen = () => {
       console.warn('not valid');
       return;
     }
-    const user = await CurrentAuthenticatedUser();
-    console.log(user);
-    /*  const newUser = new User({
-      name,
+
+    const newUser = new User({
+      sub: handleFetchUserAttributes(),
       bio,
       gender,
       lookingFor,
       image:
         'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
-    }); */
+    });
 
     DataStore.save(newUser);
   };
