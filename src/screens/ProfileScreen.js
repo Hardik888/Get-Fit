@@ -28,47 +28,49 @@ function SignOutButton() {
 }
 
 const ProfileScreen = () => {
-  const [sub, setSub] = useState(null);
-  const [user, setUser] = useState(null);
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState('');
-  const [gender, setGender] = useState('');
-  const [lookingFor, setLookingFor] = useState('');
-
   useEffect(() => {
-    async function getquery() {
+    const fetchData = async () => {
       try {
+        const {sub} = await handleFetchUserAttributes();
         const dbUsers = await DataStore.query(User);
 
-        console.log(dbUsers[0].name);
-        if (dbUsers.length < 0) {
+        if (dbUsers.length <= 0) {
           return;
         }
+
         const dbUser = dbUsers[0];
         setUser(dbUser);
         setName(dbUser.name);
         setBio(dbUser.bio);
         setGender(dbUser.gender);
         setLookingFor(dbUser.lookingFor);
-      } catch (error) {
-        console.log('Error retrieving posts', error);
+      } catch (err) {
+        console.log(err);
       }
-    } //get userinfo
-    getquery();
-  }),
-    [];
+    };
+
+    fetchData();
+  }, []);
+  const [new_sub, Setnew_sub] = useState(' ');
+  const [user, setUser] = useState(null);
+  const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
+  const [gender, setGender] = useState('');
+  const [lookingFor, setLookingFor] = useState('');
 
   async function handleFetchUserAttributes() {
     try {
-      const {sub} = await fetchUserAttributes(); // Destructure the sub property
-      // Log the sub value
-      return sub; // Return only the sub value
+      const {sub} = await fetchUserAttributes();
+
+      return sub;
+      Setnew_sub = sub;
     } catch (error) {
       console.log(error);
-      // Handle the error if needed, you might want to return a default value or rethrow the error
+
       throw error;
     }
   }
+  const dbUsers = async () => await DataStore.query(User);
 
   const isValid = () => {
     return name && bio && gender && lookingFor;
@@ -78,7 +80,7 @@ const ProfileScreen = () => {
       console.warn('not valid');
       return;
     }
-    const original = await DataStore.query(User, sub);
+
     if (user) {
       const updatedUser = User.copyOf(user, updated => {
         updated.name = name;
@@ -90,21 +92,22 @@ const ProfileScreen = () => {
       await DataStore.save(updatedUser);
     } else {
       const newsub = await handleFetchUserAttributes();
-      setSub(newsub);
+      console.log(newsub);
+      Setnew_sub(newsub);
       const newUser = new User({
         sub: newsub,
         name,
         bio,
         gender,
         lookingFor,
-        image:
-          'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
+        image: 's3://fitnessapp-storage-63b08baf204620-staging/IMG_8984.jpg',
       });
 
       await DataStore.save(newUser);
     }
     Alert.alert('User saved ');
   };
+
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
@@ -141,7 +144,7 @@ const ProfileScreen = () => {
           onValueChange={itemValue => setLookingFor(itemValue)}>
           <Picker.Item label="Male" value="MALE" />
           <Picker.Item label="Female" value="FEMALE" />
-          <Picker.Item label="Other" value="OTHER" />
+          <Picker.Item label="Everyone" value="OTHER" />
         </Picker>
 
         <Pressable onPress={save} style={styles.button}>
