@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import Card from '../components/AppCard';
-import users from '../../assets/data/users';
+
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AnimatedStack from '../components/AnimatedStack';
 
 const HomeScreen = () => {
+  const [users, SetUsers] = useState([]);
   const onSwipeLeft = user => {
     console.log('swipe left', user.name);
   };

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, useWindowDimensions} from 'react-native';
+import {Text, View, StyleSheet, useWindowDimensions} from 'react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
@@ -117,7 +117,7 @@ const AnimatedStack = props => {
           </PanGestureHandler>
         )}
 
-        {currentProfile && (
+        {currentProfile ? (
           <PanGestureHandler onGestureEvent={gestureHandler}>
             <Animated.View style={[styles.animatedCard, cardStyle]}>
               <Animated.Image
@@ -133,6 +133,10 @@ const AnimatedStack = props => {
               {renderItem({item: currentProfile})}
             </Animated.View>
           </PanGestureHandler>
+        ) : (
+          <View>
+            <Text>No user found</Text>
+          </View>
         )}
       </GestureHandlerRootView>
     </View>

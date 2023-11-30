@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import {
+  Alert,
   Text,
   TextInput,
   Button,
@@ -18,6 +19,8 @@ import {fetchUserAttributes} from 'aws-amplify/auth';
 import {getCurrentUser} from 'aws-amplify/auth';
 import {DataStore} from '@aws-amplify/datastore';
 import {useAuthenticator} from '@aws-amplify/ui-react-native';
+import {getNameOfDeclaration} from 'typescript';
+import {get} from 'core-js/core/dict';
 
 function SignOutButton() {
   const {signOut} = useAuthenticator();
@@ -25,40 +28,40 @@ function SignOutButton() {
 }
 
 const ProfileScreen = () => {
+  const [sub, setSub] = useState(null);
+  const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
   const [gender, setGender] = useState('');
   const [lookingFor, setLookingFor] = useState('');
 
-  /* useEffect(() => {
-    const handleFetchUserAttribute = async () => {
+  useEffect(() => {
+    async function getquery() {
       try {
-        const user = await fetchUserAttributes();
-        console.warn(user);
-        const dbUsers = await DataStore.query(
-          User,
-          u => u.sub === user.attributes.sub,
-        );
+        const dbUsers = await DataStore.query(User);
 
+        console.log(dbUsers[0].name);
         if (dbUsers.length < 0) {
           return;
         }
         const dbUser = dbUsers[0];
-
+        setUser(dbUser);
         setName(dbUser.name);
         setBio(dbUser.bio);
         setGender(dbUser.gender);
         setLookingFor(dbUser.lookingFor);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log('Error retrieving posts', error);
       }
-      getCurrentUser();
-    };
-  }, []); */
+    } //get userinfo
+    getquery();
+  }),
+    [];
+
   async function handleFetchUserAttributes() {
     try {
       const {sub} = await fetchUserAttributes(); // Destructure the sub property
-      console.log(sub); // Log the sub value
+      // Log the sub value
       return sub; // Return only the sub value
     } catch (error) {
       console.log(error);
@@ -75,17 +78,32 @@ const ProfileScreen = () => {
       console.warn('not valid');
       return;
     }
+    const original = await DataStore.query(User, sub);
+    if (user) {
+      const updatedUser = User.copyOf(user, updated => {
+        updated.name = name;
+        updated.bio = bio;
+        updated.gender = gender;
+        updated.lookingFor = lookingFor;
+      });
 
-    const newUser = new User({
-      sub: handleFetchUserAttributes(),
-      bio,
-      gender,
-      lookingFor,
-      image:
-        'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
-    });
+      await DataStore.save(updatedUser);
+    } else {
+      const newsub = await handleFetchUserAttributes();
+      setSub(newsub);
+      const newUser = new User({
+        sub: newsub,
+        name,
+        bio,
+        gender,
+        lookingFor,
+        image:
+          'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
+      });
 
-    DataStore.save(newUser);
+      await DataStore.save(newUser);
+    }
+    Alert.alert('User saved ');
   };
   return (
     <SafeAreaView style={styles.root}>
