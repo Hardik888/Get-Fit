@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     width: '60%',
     height: '100%',
     borderRadius: 10,
+    resizeMode: 'cover',
     marginTop: 70,
     backgroundColor: '#fefefe',
     shadowColor: '#000',
@@ -38,15 +39,17 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: '140%',
+
+    height: '105%',
     borderRadius: 10,
     overflow: 'hidden',
     justifyContent: 'flex-end',
     elevation: 6,
   },
   cardInner: {
-    padding: 10,
+    resizeMode: 'cover',
+    padding: 20,
   },
   name: {
     fontSize: 30,

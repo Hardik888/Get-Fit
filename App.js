@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   topNavigation: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10,
     width: '100%',
+    padding: 10,
   },
 });
 

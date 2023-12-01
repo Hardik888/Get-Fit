@@ -23,6 +23,10 @@
       },
       "storage": {
         "s3fitnessappstorage63b08baf": {}
+      },
+      "api": {
+        "FitnessApp": {},
+        "apib62c81c2": {}
       }
     }
   }

@@ -20,7 +20,7 @@ const HomeScreen = () => {
         return;
       }
 
-      setMe(dbUsers[0]);
+      setMe(dbUsers[2]);
     };
 
     fetchData();

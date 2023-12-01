@@ -51,14 +51,14 @@ const AnimatedStack = props => {
         scale: interpolate(
           translateX.value,
           [-hiddenTranslateX, 0, hiddenTranslateX],
-          [1.2, 0.8, 1.2],
+          [0.7, 0.5, 1.2],
         ),
       },
     ],
     opacity: interpolate(
       translateX.value,
       [-hiddenTranslateX, 0, hiddenTranslateX],
-      [1, 0.5, 1],
+      [0.7, 0.5, 1.2],
     ),
   }));
   const likeStyle = useAnimatedStyle(() => ({
@@ -142,14 +142,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   animatedCard: {
-    width: '112%',
+    width: '110%',
     height: '90%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   nextCardContainer: {
     ...StyleSheet.absoluteFillObject,
-
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -38,7 +38,7 @@ const ProfileScreen = () => {
           return;
         }
 
-        const dbUser = dbUsers[0];
+        const dbUser = dbUsers[2];
         setUser(dbUser);
         setName(dbUser.name);
         setBio(dbUser.bio);
