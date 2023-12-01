@@ -5,7 +5,6 @@ import Card from '../components/AppCard';
 import {User, Match} from '../models/';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
-
 import AnimatedStack from '../components/AnimatedStack';
 import {DataStore} from 'aws-amplify/datastore';
 const HomeScreen = () => {
@@ -23,9 +22,24 @@ const HomeScreen = () => {
 
       setMe(dbUsers[2]);
     };
-
+    if (!me) {
+      return;
+    }
+    const fetchMatches = async () => {
+      const result = await DataStore.query(Match, m =>
+        m
+          .isMatch('eq', true)
+          .or(m1 => m1.User1ID('eq', me.id).User2ID('eq', me.id)),
+      );
+      setMatchesIds(
+        result.map(match =>
+          match.User1ID === me.id ? match.User2ID : match.User1ID,
+        ),
+      );
+    };
+    fetchMatches();
     fetchData();
-  }, []);
+  }, [me]);
   useEffect(() => {
     const fetchUsers = async () => {
       const fetchedUsers = await DataStore.query(User);

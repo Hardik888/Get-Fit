@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, Image} from 'react-native';
 import {User, Match} from '../models/';
 import {DataStore} from '@aws-amplify/datastore';
-import users from '../../assets/data/users';
 import {useSafeAreaFrame} from 'react-native-safe-area-context';
 const PatnerScreen = () => {
   const [matches, setMatches] = useState([]);
@@ -10,12 +9,12 @@ const PatnerScreen = () => {
 
   const getCurrentUser = async () => {
     const dbUsers = await DataStore.query(User);
-
-    const dbuser = dbUsers[2];
-    setMe(dbuser);
+    setMe(dbUsers[2]);
   };
 
-  useEffect(() => {
+  useEffect(() => getCurrentUser(), []);
+
+  useEffect(async () => {
     const fetchMatches = async () => {
       console.log('me: ', me.id);
       const result = await DataStore.query(Match, m =>
@@ -28,26 +27,7 @@ const PatnerScreen = () => {
       setMatches(result);
     };
     fetchMatches();
-  }, [me]);
-  useEffect(() => {
-    const subscription = DataStore.observe(Match).subscribe(msg => {
-      console.log(msg.model, msg.opType, msg.element);
-
-      if (msg.opType === 'UPDATE') {
-        const newMatch = msg.element;
-        if (
-          newMatch.isMatch &&
-          (newMatch.User1ID === me.id || newMatch.User2ID === me.id)
-        ) {
-          console.log(
-            '+++++++++++++++++++ There is a new match waiting for you!',
-          );
-        }
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [me]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.root}>
