@@ -100,8 +100,7 @@ const ProfileScreen = () => {
         bio,
         gender,
         lookingFor,
-        image:
-          'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png',
+        image: 'https://i.ibb.co/jkCr6G5/itsme.jpg',
       });
 
       await DataStore.save(newUser);
