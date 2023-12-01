@@ -47,7 +47,7 @@ const HomeScreen = () => {
       new Match({
         User1ID: me.id,
         User2ID: currentUser.id,
-        isMatch: false,
+        isMatch: true,
       }),
     );
     console.warn('swipe right', currentUser.name);

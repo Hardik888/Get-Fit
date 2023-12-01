@@ -100,7 +100,8 @@ const ProfileScreen = () => {
         bio,
         gender,
         lookingFor,
-        image: 's3://fitnessapp-storage-63b08baf204620-staging/IMG_8984.jpg',
+        image:
+          'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png',
       });
 
       await DataStore.save(newUser);

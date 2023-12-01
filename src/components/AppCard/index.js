@@ -22,8 +22,8 @@ const Card = props => {
 };
 const styles = StyleSheet.create({
   card: {
-    width: '60%',
-    height: '100%',
+    width: '100%',
+    height: '120%',
     borderRadius: 10,
     resizeMode: 'cover',
     marginTop: 70,
@@ -39,17 +39,16 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-    width: '140%',
-
-    height: '105%',
+    width: '100%',
+    marginTop: '-1%',
+    height: '110%',
     borderRadius: 10,
     overflow: 'hidden',
     justifyContent: 'flex-end',
     elevation: 6,
   },
   cardInner: {
-    resizeMode: 'cover',
-    padding: 20,
+    padding: 24,
   },
   name: {
     fontSize: 30,

@@ -10,6 +10,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "User1ID": {
+                    "name": "User1ID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "User1": {
                     "name": "User1",
                     "isArray": false,
@@ -24,9 +31,16 @@ export const schema = {
                             "id"
                         ],
                         "targetNames": [
-                            "matchUser1Id"
+                            "User1ID"
                         ]
                     }
+                },
+                "User2ID": {
+                    "name": "User2ID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "User2": {
                     "name": "User2",
@@ -42,23 +56,9 @@ export const schema = {
                             "id"
                         ],
                         "targetNames": [
-                            "matchUser2Id"
+                            "User2ID"
                         ]
                     }
-                },
-                "User1ID": {
-                    "name": "User1ID",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "User2ID": {
-                    "name": "User2ID",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
                 },
                 "isMatch": {
                     "name": "isMatch",
@@ -82,20 +82,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "matchUser1Id": {
-                    "name": "matchUser1Id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "matchUser2Id": {
-                    "name": "matchUser2Id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -234,5 +220,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "51791467f8bb8f612b11b5c0f0cca366"
+    "version": "7ff71430cf7c5e04a1f666fcb57925ec"
 };
