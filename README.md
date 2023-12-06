@@ -1,4 +1,5 @@
 # Get-Fit
+![WhatsApp Image 2023-12-06 at 4 19 03 PM](https://github.com/Hardik888/Get-Fit/assets/57345910/c5e71c60-8076-48e9-83a4-071b40103844)
 
 Get-Fit is a React Native mobile application designed to help users achieve their fitness goals by providing features such as secure user authentication, profile creation, gym partner matching, and real-time messaging.
 
@@ -33,4 +34,3 @@ npm install
 npm start
 
 
-![WhatsApp Image 2023-12-06 at 4 19 03 PM](https://github.com/Hardik888/Get-Fit/assets/57345910/c5e71c60-8076-48e9-83a4-071b40103844)
